@@ -1,0 +1,378 @@
+.world {
+  width: 100%;
+  padding: 28px 0 64px;
+  color: #f4f0da;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.7fr);
+  min-height: 340px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #67afd6 0 64%, #4a833e 64% 72%, #60412d 72% 100%);
+  border: 4px solid #0a100b;
+  box-shadow: inset 4px 4px 0 rgb(255 255 255 / 18%), 7px 7px 0 #070b08;
+}
+
+.hero::before {
+  position: absolute;
+  right: -2%;
+  bottom: 28%;
+  width: 56%;
+  height: 35%;
+  content: '';
+  background:
+    linear-gradient(135deg, transparent 25%, #426f39 25% 50%, transparent 50%) 0 0 / 80px 80px;
+  opacity: 0.75;
+}
+
+.hero::after {
+  position: absolute;
+  right: 18%;
+  bottom: 0;
+  width: 82px;
+  height: 82px;
+  content: '';
+  background: #5a3a29;
+  border: 4px solid #35231b;
+  box-shadow:
+    82px 0 0 #69442e,
+    -82px 0 0 #69442e,
+    0 -82px 0 #4f853f,
+    82px -82px 0 #598f45,
+    -82px -82px 0 #598f45;
+  opacity: 0.92;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  max-width: 690px;
+  padding: clamp(34px, 6vw, 76px);
+  text-shadow: 2px 2px 0 rgb(20 30 23 / 55%);
+}
+
+.seasonBadge {
+  color: #312710;
+  background: #f3c74f;
+  border: 2px solid #5a4516;
+  border-radius: 0;
+  box-shadow: 3px 3px 0 rgb(43 35 15 / 44%);
+}
+
+.heroTitle {
+  margin-top: 18px;
+  color: #fff9dd;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  font-weight: 950;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.heroTitle span {
+  color: #f3c74f;
+}
+
+.heroText {
+  max-width: 620px;
+  margin-top: 18px;
+  color: #f4f0da;
+  font-size: clamp(0.98rem, 1.5vw, 1.15rem);
+  font-weight: 650;
+  line-height: 1.8;
+}
+
+.heroTotems {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  padding: 32px;
+}
+
+.versus {
+  color: #fff6ce;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 1.45rem;
+  font-weight: 1000;
+  text-shadow: 3px 3px 0 #1c2820;
+}
+
+.skyPixels i {
+  position: absolute;
+  z-index: 1;
+  width: 48px;
+  height: 16px;
+  background: rgb(255 255 255 / 70%);
+  box-shadow: 16px 0 0 rgb(255 255 255 / 70%), 32px 0 0 rgb(255 255 255 / 70%);
+}
+
+.skyPixels i:nth-child(1) {
+  top: 32px;
+  right: 14%;
+}
+
+.skyPixels i:nth-child(2) {
+  top: 92px;
+  left: 40%;
+  transform: scale(0.65);
+}
+
+.skyPixels i:nth-child(3) {
+  top: 42px;
+  left: 8%;
+  transform: scale(0.5);
+}
+
+.skyPixels i:nth-child(4) {
+  top: 135px;
+  right: 42%;
+  transform: scale(0.35);
+}
+
+.pixelButton,
+.pixelButtonAlt,
+.cardAction,
+.cardActionDanger {
+  min-height: 46px;
+  color: #122015;
+  font-weight: 900;
+  border: 3px solid #0a100b;
+  border-radius: 0;
+  box-shadow: inset 2px 2px 0 rgb(255 255 255 / 24%), 4px 4px 0 rgb(5 10 7 / 66%);
+  transition: transform 100ms ease, box-shadow 100ms ease, filter 100ms ease;
+}
+
+.pixelButton {
+  background: #69ad50;
+}
+
+.pixelButtonAlt {
+  background: #f3c74f;
+}
+
+.pixelButton:hover,
+.pixelButtonAlt:hover,
+.cardAction:hover,
+.cardActionDanger:hover {
+  filter: brightness(1.12);
+}
+
+.pixelButton:active,
+.pixelButtonAlt:active,
+.cardAction:active,
+.cardActionDanger:active {
+  box-shadow: inset 2px 2px 0 rgb(255 255 255 / 16%), 2px 2px 0 rgb(5 10 7 / 66%);
+  transform: translate(2px, 2px);
+}
+
+.modeGrid {
+  margin-top: 30px;
+}
+
+.modeCard {
+  min-height: 440px;
+}
+
+.modeCardTop {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.modeCardTop h2 {
+  color: #fff7dc;
+  font-size: 1.65rem;
+}
+
+.modeKicker {
+  color: #f3c74f;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.17em;
+}
+
+.pkIcon,
+.bossIcon {
+  color: #10201a;
+  border: 3px solid #080d09;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 #090c09;
+}
+
+.pkIcon {
+  background: #45d2c2;
+}
+
+.bossIcon {
+  background: #efb34b;
+}
+
+.modeDescription {
+  position: relative;
+  z-index: 2;
+  min-height: 78px;
+  margin: 23px 0;
+  color: #d5ddcf;
+  line-height: 1.75;
+}
+
+.miniStats {
+  position: relative;
+  z-index: 2;
+}
+
+.miniStats > div {
+  display: grid;
+  padding: 12px 8px;
+  text-align: center;
+  background: rgb(6 8 7 / 42%);
+  border: 2px solid #0b0e0c;
+  place-items: center;
+}
+
+.miniStats svg {
+  color: #45d2c2;
+}
+
+.miniStats strong {
+  margin-top: 4px;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.95rem;
+}
+
+.miniStats span {
+  color: #aeb8aa;
+  font-size: 0.65rem;
+}
+
+.cardAction,
+.cardActionDanger {
+  position: relative;
+  z-index: 2;
+  margin-top: 25px;
+}
+
+.cardAction {
+  background: #45d2c2;
+}
+
+.cardActionDanger {
+  background: #e6a640;
+}
+
+.bossCardVisual {
+  position: absolute;
+  top: -32px;
+  right: -62px;
+  z-index: 0;
+  opacity: 0.18;
+  transform: scale(0.72);
+}
+
+.liveBadge {
+  position: absolute;
+  right: 68px;
+  bottom: -9px;
+  color: #fff0d3;
+  background: #b82d40;
+  border: 2px solid #290d12;
+  border-radius: 0;
+}
+
+.compactHealth {
+  position: relative;
+  z-index: 2;
+  padding: 13px;
+  background: rgb(11 8 9 / 48%);
+  border: 2px solid #170d10;
+}
+
+.compactHealth > div:last-child {
+  height: 17px;
+  margin-top: 8px;
+  overflow: hidden;
+  background: #180f11;
+  border: 2px solid #080405;
+}
+
+.compactHealth span {
+  display: block;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, #d94357 0 22px, #9f2b3a 22px 25px);
+  box-shadow: inset 0 3px 0 #f06c79;
+}
+
+.questBar {
+  height: 12px;
+  overflow: hidden;
+  background: #142019;
+  border: 2px solid #09100b;
+}
+
+.questBar span {
+  display: block;
+  height: 100%;
+  background: #f3c74f;
+}
+
+@media (max-width: 62em) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .heroTotems {
+    position: absolute;
+    right: 4%;
+    bottom: 18px;
+    transform: scale(0.75);
+    transform-origin: right bottom;
+  }
+}
+
+@media (max-width: 48em) {
+  .world {
+    padding-top: 14px;
+  }
+
+  .hero {
+    min-height: 460px;
+  }
+
+  .heroContent {
+    align-self: start;
+    padding: 34px 24px;
+  }
+
+  .heroTotems {
+    right: 50%;
+    bottom: 48px;
+    transform: translateX(50%) scale(0.8);
+  }
+
+  .hero::after {
+    right: 32%;
+  }
+
+  .modeCard {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixelButton,
+  .pixelButtonAlt,
+  .cardAction,
+  .cardActionDanger {
+    transition: none;
+  }
+}

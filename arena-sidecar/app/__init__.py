@@ -1,0 +1,2 @@
+"""GZCTF Arena sidecar service."""
+

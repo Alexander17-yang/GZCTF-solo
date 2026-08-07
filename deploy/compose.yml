@@ -1,0 +1,128 @@
+name: gzctf-solo
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: gzctf
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d gzctf"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks: [platform]
+
+  cache:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+    volumes:
+      - redis-data:/data
+    networks: [platform]
+
+  frontend-builder:
+    image: node:22-alpine
+    profiles: ["build"]
+    working_dir: /workspace
+    environment:
+      VITE_BASE_PATH: /ctf/
+      VITE_APP_GIT_NAME: GZCTF-solo
+      VITE_APP_GIT_SHA: ${BUILD_REVISION:-local}
+      VITE_APP_BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-container-build}
+    volumes:
+      - ../src/GZCTF/ClientApp:/workspace
+    command:
+      - sh
+      - -ec
+      - npm install --global pnpm@10 && pnpm install --frozen-lockfile && pnpm build
+
+  gzctf:
+    image: ${GZCTF_IMAGE:-registry.cn-shanghai.aliyuncs.com/gztime/gzctf:develop}
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
+      GZCTF_ADMIN_PASSWORD: ${GZCTF_ADMIN_PASSWORD:?set GZCTF_ADMIN_PASSWORD in deploy/.env}
+      ConnectionStrings__Database: Host=db;Port=5432;Database=gzctf;Username=postgres;Password=${POSTGRES_PASSWORD}
+      ConnectionStrings__RedisCache: cache:6379
+      ContainerProvider__Type: Docker
+      ContainerProvider__PortMappingType: Default
+      ContainerProvider__PublicEntry: ${PUBLIC_ENTRY:?set PUBLIC_ENTRY in deploy/.env}
+      ContainerProvider__DockerConfig__Uri: unix:///var/run/docker.sock
+      ContainerProvider__DockerConfig__ChallengeNetwork: gzctf-solo
+      LC_ALL: zh_CN.UTF-8
+    volumes:
+      - gzctf-files:/app/files
+      - ../src/GZCTF/ClientApp/build:/app/wwwroot:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_started
+    expose: ["8080"]
+    networks: [platform]
+
+  arena-api:
+    build:
+      context: ../arena-sidecar
+    image: gzctf-solo-arena:local
+    restart: unless-stopped
+    init: true
+    environment:
+      ARENA_DATABASE_PATH: /data/arena.db
+      ARENA_ROOT_PATH: /ctf
+      ARENA_FLAG_PEPPER: ${ARENA_FLAG_PEPPER:?set ARENA_FLAG_PEPPER in deploy/.env}
+      ARENA_TRUSTED_HOSTS: ${ARENA_TRUSTED_HOSTS:?set ARENA_TRUSTED_HOSTS in deploy/.env}
+      ARENA_CORS_ORIGINS: ${ARENA_CORS_ORIGINS:-}
+      GZCTF_INTERNAL_URL: http://gzctf:8080
+      GZCTF_PROFILE_PATH: /api/account/profile
+      GZCTF_COOKIE_NAME: GZCTF_Token
+      GZCTF_REQUEST_TIMEOUT_SECONDS: "5"
+      GZCTF_IDENTITY_CACHE_TTL_SECONDS: "10"
+      GZCTF_IDENTITY_STALE_IF_ERROR_SECONDS: "60"
+      GZCTF_IDENTITY_ERROR_BACKOFF_SECONDS: "3"
+      ARENA_LOCAL_ADMIN_ENABLED: "false"
+    volumes:
+      - arena-data:/data
+    depends_on:
+      gzctf:
+        condition: service_healthy
+    expose: ["8090"]
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,noexec,nosuid
+    cap_drop: ["ALL"]
+    security_opt:
+      - no-new-privileges:true
+    networks: [platform]
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-80}:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      gzctf:
+        condition: service_healthy
+      arena-api:
+        condition: service_healthy
+    networks: [platform]
+
+networks:
+  platform:
+    name: gzctf-solo-platform
+
+volumes:
+  postgres-data:
+  redis-data:
+  gzctf-files:
+  arena-data:

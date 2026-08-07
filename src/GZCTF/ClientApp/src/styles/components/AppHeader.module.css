@@ -1,0 +1,13 @@
+.header {
+  width: 100%;
+  z-index: 150;
+  background-color: light-dark(#f1edda, #17231b);
+  border: none;
+  border-bottom: 3px solid light-dark(#817d6b, #080d09);
+  box-shadow: 0 4px 0 light-dark(rgb(71 65 45 / 18%), rgb(5 8 6 / 48%));
+}
+
+.button {
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-0));
+  border-radius: 0;
+}

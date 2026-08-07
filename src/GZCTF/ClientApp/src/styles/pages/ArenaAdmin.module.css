@@ -1,0 +1,421 @@
+.page {
+  --voxel-border: color-mix(in srgb, var(--mantine-color-dark-3) 78%, black);
+  padding-bottom: 2rem;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 104px;
+  padding: 1.35rem 1.5rem;
+  border: 2px solid var(--voxel-border);
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg, rgb(35 91 117 / 24%), transparent 48%),
+    repeating-linear-gradient(0deg, rgb(255 255 255 / 2%) 0 1px, transparent 1px 8px), var(--mantine-color-dark-7);
+  box-shadow: 5px 5px 0 rgb(0 0 0 / 32%);
+}
+
+.kicker {
+  color: var(--mantine-color-cyan-4);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+
+.statBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 74px;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--voxel-border);
+  border-radius: 3px;
+  background: var(--mantine-color-dark-7);
+  box-shadow: 3px 3px 0 rgb(0 0 0 / 28%);
+}
+
+.statBlock strong,
+.statBlock span {
+  display: block;
+}
+
+.statBlock strong {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  line-height: 1.15;
+}
+
+.statBlock span {
+  margin-top: 0.15rem;
+  color: var(--mantine-color-dimmed);
+  font-size: 0.7rem;
+  font-weight: 750;
+}
+
+.configBlock {
+  padding: 1.25rem;
+  border: 2px solid var(--voxel-border);
+  border-radius: 3px;
+  background: var(--mantine-color-dark-7);
+  box-shadow: 4px 4px 0 rgb(0 0 0 / 25%);
+}
+
+.tabs :global(.mantine-Tabs-list) {
+  border-bottom-width: 2px;
+}
+
+.tabs :global(.mantine-Tabs-tab) {
+  border-width: 2px;
+  border-radius: 2px 2px 0 0;
+  font-weight: 800;
+}
+
+.fieldSwitch {
+  display: flex;
+  align-items: flex-end;
+  min-height: 56px;
+  padding-bottom: 0.25rem;
+}
+
+.search {
+  flex: 1;
+}
+
+.challengeTable {
+  min-width: 900px;
+}
+
+.challengeTable thead {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  background: var(--mantine-color-dark-7);
+}
+
+.challengeTable th {
+  border-bottom: 2px solid var(--voxel-border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.challengeTable td {
+  border-bottom: 1px solid var(--mantine-color-dark-4);
+}
+
+.editorModal {
+  border: 2px solid var(--voxel-border);
+  border-radius: 4px;
+  box-shadow: 7px 7px 0 rgb(0 0 0 / 45%);
+}
+
+.modeEditor {
+  padding: 1rem;
+  border: 2px solid var(--voxel-border);
+  border-left-width: 6px;
+  border-radius: 3px;
+  background: var(--mantine-color-dark-8);
+}
+
+.modeEditor[data-tone='pk'] {
+  border-left-color: var(--mantine-color-cyan-6);
+}
+
+.modeEditor[data-tone='boss'] {
+  border-left-color: var(--mantine-color-red-6);
+}
+
+.matchToolbarActions {
+  flex-wrap: nowrap;
+}
+
+.matchFilter {
+  width: 12rem;
+}
+
+.matchStat {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 66px;
+  padding: 0.75rem 0.9rem;
+  border: 2px solid var(--voxel-border);
+  border-radius: 2px;
+  background: linear-gradient(135deg, rgb(24 146 165 / 10%), transparent 56%), var(--mantine-color-dark-8);
+  box-shadow: 2px 2px 0 rgb(0 0 0 / 24%);
+}
+
+.matchStat strong,
+.matchStat span {
+  display: block;
+}
+
+.matchStat strong {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.05rem;
+  line-height: 1.1;
+}
+
+.matchStat span {
+  margin-top: 0.2rem;
+  color: var(--mantine-color-dimmed);
+  font-size: 0.67rem;
+  font-weight: 800;
+}
+
+.matchTableViewport {
+  max-height: min(54vh, 660px);
+}
+
+.matchTable {
+  min-width: 1380px;
+}
+
+.matchTable thead {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  background: var(--mantine-color-dark-7);
+}
+
+.matchTable th {
+  border-bottom: 2px solid var(--voxel-border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.matchTable td {
+  border-bottom: 1px solid var(--mantine-color-dark-4);
+  vertical-align: top;
+}
+
+.matchTable tbody tr:hover {
+  background: rgb(35 167 188 / 7%);
+}
+
+.matchRoomCode {
+  border: 1px solid var(--mantine-color-cyan-8);
+  border-radius: 2px;
+  color: var(--mantine-color-cyan-3);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.matchPlayers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(7.5rem, 1fr));
+  gap: 0.45rem;
+}
+
+.matchPlayer {
+  min-width: 0;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--mantine-color-dark-4);
+  border-left: 3px solid var(--mantine-color-cyan-8);
+  border-radius: 2px;
+  background: var(--mantine-color-dark-8);
+}
+
+.matchPlayer[data-winner] {
+  border-color: var(--mantine-color-yellow-7);
+  border-left-width: 4px;
+  background: linear-gradient(135deg, rgb(250 176 5 / 12%), transparent 72%), var(--mantine-color-dark-8);
+}
+
+.matchPlayer[data-empty] {
+  border-left-color: var(--mantine-color-dark-4);
+  opacity: 0.72;
+}
+
+.matchUserId {
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.matchScore {
+  min-width: 7.4rem;
+}
+
+.matchScore > :first-child {
+  color: var(--mantine-color-cyan-3);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+}
+
+.matchScore > :first-child span {
+  padding-inline: 0.3rem;
+  color: var(--mantine-color-dimmed);
+}
+
+.matchTimes {
+  min-width: 13.5rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.matchTimes p + p {
+  margin-top: 0.2rem;
+}
+
+.matchTimes span {
+  display: inline-block;
+  width: 2.4rem;
+  color: var(--mantine-color-dimmed);
+  font-family: inherit;
+  font-size: 0.64rem;
+  font-weight: 900;
+}
+
+.matchCards {
+  display: none;
+}
+
+.matchActions {
+  min-width: 8.4rem;
+  flex-direction: column;
+}
+
+.matchActions button,
+.matchActionTooltipTarget,
+.matchActionTooltipTarget button {
+  width: 100%;
+}
+
+.matchActionTooltipTarget {
+  display: block;
+}
+
+.matchCard {
+  padding: 0.9rem;
+  border: 2px solid var(--voxel-border);
+  border-radius: 2px;
+  background: linear-gradient(145deg, rgb(35 167 188 / 8%), transparent 46%), var(--mantine-color-dark-8);
+  box-shadow: 3px 3px 0 rgb(0 0 0 / 25%);
+}
+
+.matchCard .matchTimes {
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--mantine-color-dark-4);
+}
+
+.matchCardActions {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--mantine-color-dark-4);
+}
+
+.matchCardActions .matchActions {
+  min-width: 0;
+  flex-direction: row;
+}
+
+.matchCardActions .matchActions > * {
+  flex: 1;
+}
+
+.matchDeleteModal {
+  border: 2px solid var(--voxel-border);
+  border-radius: 3px;
+  box-shadow: 7px 7px 0 rgb(0 0 0 / 45%);
+}
+
+.matchDeleteSummary {
+  padding: 0.8rem;
+  border: 1px solid var(--mantine-color-dark-4);
+  border-radius: 2px;
+  background: var(--mantine-color-dark-8);
+}
+
+.matchDeleteImpact {
+  padding: 0.85rem;
+  border: 2px solid var(--mantine-color-orange-8);
+  border-left-width: 5px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, rgb(253 126 20 / 10%), transparent 65%), var(--mantine-color-dark-8);
+}
+
+.matchDeleteImpact[data-action='record'] {
+  border-color: var(--mantine-color-red-8);
+  background: linear-gradient(135deg, rgb(250 82 82 / 11%), transparent 65%), var(--mantine-color-dark-8);
+}
+
+.matchEmpty {
+  min-height: 190px;
+  border: 2px dashed var(--mantine-color-dark-4);
+  border-radius: 2px;
+  color: var(--mantine-color-dimmed);
+  background: var(--mantine-color-dark-8);
+}
+
+@media (max-width: 1200px) {
+  .statBlock {
+    padding-inline: 0.7rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .hero {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .matchToolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .matchToolbarActions {
+    width: 100%;
+  }
+
+  .matchFilter {
+    flex: 1;
+    width: auto;
+  }
+
+  .matchTableViewport {
+    display: none;
+  }
+
+  .matchCards {
+    display: flex;
+  }
+}
+
+@media (max-width: 34em) {
+  .configBlock {
+    padding: 0.85rem;
+  }
+
+  .matchToolbarActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .matchFilter {
+    width: 100%;
+  }
+
+  .matchPlayers {
+    grid-template-columns: 1fr;
+  }
+
+  .matchCardActions .matchActions {
+    flex-direction: column;
+  }
+
+  .matchDeleteSummary {
+    grid-template-columns: 1fr;
+  }
+}

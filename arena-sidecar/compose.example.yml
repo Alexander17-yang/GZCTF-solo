@@ -1,0 +1,32 @@
+services:
+  arena-sidecar:
+    build:
+      context: ./arena-sidecar
+    restart: unless-stopped
+    environment:
+      GZCTF_INTERNAL_URL: ${GZCTF_INTERNAL_URL:-http://gzctf:8080}
+      GZCTF_PROFILE_PATH: ${GZCTF_PROFILE_PATH:-/api/account/profile}
+      GZCTF_COOKIE_NAME: ${GZCTF_COOKIE_NAME:-GZCTF_Token}
+      GZCTF_REQUEST_TIMEOUT_SECONDS: ${GZCTF_REQUEST_TIMEOUT_SECONDS:-5}
+      ARENA_DATABASE_PATH: /data/arena.db
+      ARENA_ROOT_PATH: ${ARENA_ROOT_PATH:-/ctf}
+      ARENA_FLAG_PEPPER: ${ARENA_FLAG_PEPPER:?ARENA_FLAG_PEPPER is required}
+      ARENA_CORS_ORIGINS: ${ARENA_CORS_ORIGINS:-}
+      ARENA_TRUSTED_HOSTS: ${ARENA_TRUSTED_HOSTS:-localhost,127.0.0.1}
+      ARENA_LOCAL_ADMIN_ENABLED: "false"
+    volumes:
+      - arena-data:/data
+    ports:
+      - "127.0.0.1:8090:8090"
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,noexec,nosuid
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - default
+
+volumes:
+  arena-data:

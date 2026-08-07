@@ -1,0 +1,443 @@
+.raidWorld {
+  width: 100%;
+  min-height: 100vh;
+  padding: 14px 12px 64px;
+  color: #f4f0da;
+}
+
+.raidHeader {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  align-items: center;
+  min-height: 54px;
+}
+
+.phaseBadge,
+.liveBadge {
+  border-radius: 0;
+  box-shadow: 3px 3px 0 #070b08;
+}
+
+.phaseBadge {
+  color: #1a2118;
+  background: #f3c74f;
+  border: 2px solid #3d3010;
+}
+
+.liveBadge {
+  color: #ffe8df;
+  background: #bc3145;
+  border: 2px solid #3f1119;
+}
+
+.enrageClock {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  justify-self: end;
+  color: #f1a34a;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.bossStage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(260px, 0.75fr) minmax(230px, 0.7fr);
+  gap: 20px;
+  align-items: center;
+  min-height: 350px;
+  margin: 8px 0 20px;
+  padding: 30px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgb(61 40 52 / 12%), rgb(12 15 13 / 62%)),
+    repeating-linear-gradient(90deg, #222a25 0 62px, #1c231f 62px 65px);
+  border: 4px solid #090d0a;
+  box-shadow:
+    inset 4px 4px 0 rgb(255 255 255 / 7%),
+    6px 6px 0 #070a08;
+}
+
+.bossStage::before {
+  position: absolute;
+  inset: auto 0 0;
+  height: 64px;
+  content: '';
+  background:
+    linear-gradient(135deg, transparent 25%, #293129 25% 50%, transparent 50%) 0 0 / 64px 64px,
+    #171d19;
+  border-top: 4px solid #0b0e0c;
+}
+
+.bossIdentity,
+.bossVisual,
+.worldStats,
+.healthArea {
+  position: relative;
+  z-index: 2;
+}
+
+.raidKicker {
+  color: #ed6a5c;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+}
+
+.bossName {
+  max-width: 500px;
+  margin-top: 8px;
+  color: #fff0d4;
+  font-size: clamp(2rem, 4.3vw, 4rem);
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.bossVisual {
+  transform: scale(0.92);
+}
+
+.worldStats {
+  display: grid;
+  gap: 12px;
+}
+
+.healthArea {
+  grid-column: 1 / -1;
+  padding: 15px;
+  background: rgb(6 9 7 / 68%);
+  border: 3px solid #070a08;
+}
+
+.raidGrid {
+  display: grid;
+  grid-template-columns: minmax(590px, 1.7fr) minmax(270px, 0.72fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.raidChallenge {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 166px;
+  padding: 13px;
+  color: #e8ebe2;
+  text-align: left;
+  cursor: pointer;
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 4%) 50%, transparent 50%) 0 0 / 26px 26px,
+    #3d4741;
+  border: 3px solid #0a100b;
+  box-shadow:
+    inset 3px 3px 0 rgb(255 255 255 / 8%),
+    4px 4px 0 #070b08;
+}
+
+.raidChallenge:hover,
+.raidChallenge[data-active] {
+  border-color: #f3c74f;
+  transform: translateY(-2px);
+}
+
+.raidChallenge[data-affinity='weak'] {
+  background: #55462b;
+  border-color: #c69e37;
+}
+
+.raidChallenge[data-affinity='shield'] {
+  background: #294b61;
+  border-color: #5595c4;
+}
+
+.raidChallenge[data-affinity='resistant'] {
+  background: #532f34;
+  border-color: #b9505e;
+}
+
+.raidChallenge[data-affinity='locked'] {
+  cursor: not-allowed;
+  filter: grayscale(0.7);
+  opacity: 0.55;
+}
+
+.raidChallenge[data-solved] {
+  background: #315b35;
+  border-color: #67b65b;
+}
+
+.challengeIcon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 10px;
+  color: #182018;
+  background: #d2d7cf;
+  border: 2px solid #0a100b;
+  place-items: center;
+}
+
+.raidChallenge > span {
+  color: #f3c74f;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.63rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.raidChallenge > strong {
+  margin-top: 5px;
+  font-size: 0.94rem;
+}
+
+.raidChallenge > small {
+  margin-top: 3px;
+  color: #abb5aa;
+  font-size: 0.65rem;
+}
+
+.raidChallenge > b {
+  margin-top: auto;
+  padding-top: 13px;
+  color: #ef6a5c;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.8rem;
+}
+
+.raidChallenge > i {
+  position: absolute;
+  right: 8px;
+  top: 9px;
+  padding: 3px 5px;
+  color: #1b2118;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.57rem;
+  font-style: normal;
+  font-weight: 900;
+  background: #f3c74f;
+  border: 2px solid #11150f;
+}
+
+.challengeDetailGrid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+
+.challengeText {
+  color: #d8ddd4;
+  line-height: 1.75;
+}
+
+.attackButton {
+  min-width: 190px;
+  min-height: 52px;
+  color: #152018;
+  font-weight: 950;
+  background: #f3c74f;
+  border: 3px solid #090d0a;
+  border-radius: 0;
+  box-shadow:
+    inset 3px 3px 0 rgb(255 255 255 / 20%),
+    4px 4px 0 #080b09;
+}
+
+.attackButton:disabled {
+  color: #9ca39a;
+  background: #343a35;
+  opacity: 1;
+}
+
+.bossFlagForm {
+  display: grid;
+  gap: 10px;
+  width: min(320px, 100%);
+}
+
+.bossFlagForm :global(.mantine-TextInput-input) {
+  height: 46px;
+  color: #f4f0da;
+  font-family: var(--mantine-font-family-monospace);
+  background: #111914;
+  border: 3px solid #070b08;
+  border-radius: 0;
+}
+
+.partyName {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.partyIcon {
+  color: #142018;
+  background: #f3c74f;
+  border: 3px solid #0a100b;
+  border-radius: 0;
+  box-shadow: 3px 3px 0 #080d09;
+}
+
+.damageNumber {
+  margin-top: 20px;
+  color: #f3c74f;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 2.1rem;
+  font-weight: 1000;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 3px 3px 0 #111811;
+}
+
+.raidEvent {
+  padding: 8px 9px;
+  background: rgb(8 10 9 / 32%);
+  border-left: 3px solid #515c54;
+}
+
+.raidEvent[data-fresh] {
+  background: rgb(243 199 79 / 10%);
+  border-left-color: #f3c74f;
+}
+
+.raidEvent strong {
+  color: #f3c74f;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.65rem;
+}
+
+.raidEvent p {
+  margin-top: 3px;
+  color: #c8cec4;
+  line-height: 1.45;
+}
+
+.rankRow {
+  display: grid;
+  grid-template-columns: 30px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 8px;
+  background: rgb(10 7 8 / 32%);
+}
+
+.rankRow[data-self] {
+  background: rgb(243 199 79 / 14%);
+  border: 1px solid #8d7027;
+}
+
+.rankRow span,
+.rankRow b {
+  color: #f3c74f;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.72rem;
+}
+
+.rankRow strong {
+  font-size: 0.76rem;
+}
+
+.worldTicker {
+  position: sticky;
+  bottom: 12px;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  padding: 11px 16px;
+  color: #211b0e;
+  font-size: 0.8rem;
+  background: #f3c74f;
+  border: 3px solid #171108;
+  box-shadow: 5px 5px 0 rgb(7 10 8 / 72%);
+}
+
+@media (max-width: 74em) {
+  .bossStage {
+    grid-template-columns: 1fr 0.75fr;
+  }
+
+  .worldStats {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .raidGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .raidGrid > :last-child {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 62em) {
+  .bossStage {
+    grid-template-columns: 1fr;
+  }
+
+  .bossVisual {
+    position: absolute;
+    top: 8px;
+    right: 2%;
+    opacity: 0.2;
+  }
+
+  .bossIdentity {
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 48em) {
+  .raidWorld {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .raidHeader {
+    grid-template-columns: 1fr auto;
+  }
+
+  .raidHeader > :first-child {
+    display: none;
+  }
+
+  .bossStage {
+    padding: 22px 16px;
+  }
+
+  .bossIdentity {
+    max-width: 100%;
+  }
+
+  .bossVisual {
+    display: none;
+  }
+
+  .worldStats,
+  .raidGrid > :last-child,
+  .challengeDetailGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .attackButton {
+    width: 100%;
+  }
+
+  .bossFlagForm {
+    width: 100%;
+  }
+
+  .worldTicker {
+    align-items: flex-start;
+    font-size: 0.68rem;
+  }
+}

@@ -1,0 +1,99 @@
+.link {
+  width: 40px;
+  height: 40px;
+  border: 2px solid transparent;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  @mixin dark {
+    color: var(--mantine-color-gray-0);
+
+    &:hover {
+      background-color: #2a382d;
+      border-color: #0a100b;
+    }
+
+    &[data-active] {
+      color: #f4f0da;
+      background-color: #3f7436;
+      border-color: #0a100b;
+      box-shadow: inset 2px 2px 0 rgb(255 255 255 / 10%), 3px 3px 0 #080d09;
+    }
+  }
+
+  @mixin light {
+    color: var(--mantine-color-gray-7);
+
+    &:hover {
+      background-color: var(--mantine-color-gray-1);
+    }
+
+    &[data-active] {
+      background-color: var(--mantine-primary-color-filled);
+      color: var(--mantine-color-white);
+    }
+  }
+}
+
+.navbar {
+  padding: var(--mantine-spacing-xs);
+  background-color: light-dark(#f1edda, #17231b);
+  border: none;
+  border-right: 3px solid light-dark(#817d6b, #080d09);
+  box-shadow: 5px 0 0 light-dark(rgb(71 65 45 / 18%), rgb(5 8 6 / 48%));
+
+  @media (max-width: $mantine-breakpoint-xs) {
+    display: none;
+  }
+}
+
+.tooltip {
+  margin-left: 20px;
+  font-weight: 500;
+  color: var(--mantine-color-light-0);
+  background-color: var(--mantine-primary-color-6);
+
+  @mixin dark {
+    background-color: darken(var(--mantine-primary-color-8), 0.45);
+    color: var(--mantine-primary-color-2);
+  }
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--mantine-spacing-xs);
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.main {
+  width: 100%;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  background-color: light-dark(#e8e4d1, #101813);
+  background-image:
+    linear-gradient(90deg, light-dark(rgb(80 69 39 / 3%), rgb(255 255 255 / 1.3%)) 50%, transparent 50%),
+    linear-gradient(light-dark(rgb(80 69 39 / 2%), rgb(255 255 255 / 1%)) 50%, transparent 50%);
+  background-size: 32px 32px;
+  box-shadow: none;
+  min-height: 100vh;
+
+  &[data-mobile] {
+    min-height: calc(100vh - 60pt);
+  }
+
+  &[data-pb] {
+    padding-bottom: var(--mantine-spacing-xl);
+  }
+}

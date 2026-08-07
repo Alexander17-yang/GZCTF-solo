@@ -1,0 +1,375 @@
+.battlefield {
+  width: 100%;
+  min-height: 100vh;
+  padding: 14px 12px 54px;
+  color: #f4f0da;
+}
+
+.matchHeader {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: center;
+  min-height: 58px;
+  padding: 8px 14px;
+  background: #17231b;
+  border: 3px solid #080d09;
+  box-shadow: inset 2px 2px 0 rgb(255 255 255 / 7%), 5px 5px 0 #070b08;
+}
+
+.roundScore {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.roundScore span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  font-family: var(--mantine-font-family-monospace);
+  font-weight: 950;
+  background: #303a32;
+  border: 2px solid #080d09;
+  place-items: center;
+}
+
+.roundScore span[data-won] {
+  color: #102016;
+  background: #45d2c2;
+}
+
+.roundScore p {
+  color: #f3c74f;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.timer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-self: end;
+  min-width: 112px;
+  color: #f3c74f;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 1.35rem;
+  font-weight: 950;
+}
+
+.timer[data-warning] {
+  color: #f05a61;
+}
+
+.playerStrip {
+  display: grid;
+  grid-template-columns: 1fr 54px 1fr;
+  gap: 14px;
+  align-items: center;
+  margin: 18px 0;
+}
+
+.playerSide {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 78px;
+  padding: 10px 16px;
+  background: linear-gradient(90deg, #203e42, #192a28);
+  border: 3px solid #08100e;
+  box-shadow: inset 3px 3px 0 rgb(255 255 255 / 7%);
+}
+
+.playerSide > strong {
+  margin-left: auto;
+  color: #45d2c2;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 2rem;
+}
+
+.opponent {
+  background: linear-gradient(270deg, #4b3021, #29221c);
+}
+
+.opponent > strong {
+  margin-right: auto;
+  margin-left: 0;
+  color: #f18b42;
+}
+
+.vsMark {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  color: #182018;
+  background: #f3c74f;
+  border: 3px solid #080d09;
+  box-shadow: 4px 4px 0 #070b08;
+  place-items: center;
+}
+
+.battleGrid {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.72fr) minmax(520px, 1.65fr) minmax(245px, 0.76fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.smallMetric {
+  display: grid;
+  padding: 10px;
+  text-align: center;
+  background: #131b16;
+  border: 2px solid #080d09;
+}
+
+.smallMetric strong {
+  color: #f3c74f;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 1.05rem;
+}
+
+.smallMetric span {
+  color: #aab4a7;
+  font-size: 0.65rem;
+}
+
+.tacticButton,
+.resourceButton,
+.instanceRunning,
+.submitButton {
+  min-height: 40px;
+  color: #162018;
+  font-weight: 900;
+  background: #d6aa43;
+  border: 2px solid #090d0a;
+  border-radius: 0;
+  box-shadow: inset 2px 2px 0 rgb(255 255 255 / 19%), 3px 3px 0 #080b09;
+}
+
+.tacticButton:disabled {
+  color: #90978e;
+  background: #343a35;
+  opacity: 1;
+}
+
+.challengeBlock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 128px;
+  padding: 14px;
+  color: #e7e9df;
+  text-align: left;
+  cursor: pointer;
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 4%) 50%, transparent 50%) 0 0 / 24px 24px,
+    #3f4843;
+  border: 3px solid #0a100b;
+  box-shadow: inset 3px 3px 0 rgb(255 255 255 / 9%), 4px 4px 0 #070b08;
+}
+
+.challengeBlock:hover,
+.challengeBlock[data-active] {
+  border-color: #f3c74f;
+  transform: translateY(-2px);
+}
+
+.challengeBlock[data-solved] {
+  background: #315b35;
+  border-color: #70bc62;
+}
+
+.challengeBlock > span {
+  color: #f3c74f;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.challengeBlock strong {
+  margin-top: 11px;
+  font-size: 1rem;
+}
+
+.challengeBlock small {
+  margin-top: 5px;
+  color: #b9c0b7;
+  font-size: 0.68rem;
+}
+
+.challengeBlock i {
+  position: absolute;
+  right: 10px;
+  bottom: 9px;
+  color: #101713;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.67rem;
+  font-style: normal;
+  font-weight: 900;
+  background: #aeb8ae;
+  border: 2px solid #0a100b;
+  padding: 3px 5px;
+}
+
+.challengeDetail {
+  min-height: 455px;
+}
+
+.challengeCopy {
+  color: #d8ddd4;
+  line-height: 1.8;
+}
+
+.codeBlock {
+  padding: 14px;
+  color: #b9f5dc;
+  background: #101713;
+  border: 2px solid #060906;
+  border-radius: 0;
+}
+
+.resourceButton {
+  color: #e7ecdf;
+  background: #46514a;
+}
+
+.instanceRunning {
+  color: #112016;
+  background: #65b454;
+}
+
+.instanceAddress {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  color: #bdf6dc;
+  background: #101713;
+  border: 2px solid #070a08;
+}
+
+.instanceAddress code {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.flagForm {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 9px;
+}
+
+.flagForm :global(.mantine-TextInput-input) {
+  height: 46px;
+  color: #dcf1df;
+  font-family: var(--mantine-font-family-monospace);
+  background: #111914;
+  border: 3px solid #070b08;
+  border-radius: 0;
+}
+
+.submitButton {
+  min-width: 125px;
+  color: #102018;
+  background: #45d2c2;
+}
+
+.ruleHint {
+  color: #d2b967;
+}
+
+.eventPanel {
+  min-height: 410px;
+}
+
+.eventItem {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 8px;
+  padding: 9px;
+  background: rgb(10 12 11 / 32%);
+  border-left: 3px solid #46504a;
+}
+
+.eventItem[data-fresh] {
+  background: rgb(69 210 194 / 10%);
+  border-left-color: #45d2c2;
+}
+
+.eventItem > span {
+  color: #869187;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 0.62rem;
+}
+
+.privacyHint {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 18px;
+  color: #8e9890;
+  font-size: 0.65rem;
+}
+
+@media (max-width: 74em) {
+  .battleGrid {
+    grid-template-columns: minmax(210px, 0.65fr) minmax(500px, 1.5fr);
+  }
+
+  .eventPanel {
+    grid-column: 1 / -1;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 62em) {
+  .battleGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .playerStrip {
+    grid-template-columns: 1fr 42px 1fr;
+    gap: 5px;
+  }
+
+  .playerSide {
+    padding: 8px;
+  }
+
+  .playerSide > strong {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .battlefield {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .matchHeader {
+    grid-template-columns: 1fr auto;
+  }
+
+  .matchHeader > :first-child {
+    display: none;
+  }
+
+  .playerSide > div:not(:first-child) {
+    display: none;
+  }
+
+  .playerStrip {
+    grid-template-columns: 1fr 36px 1fr;
+  }
+
+  .flagForm {
+    grid-template-columns: 1fr;
+  }
+}
